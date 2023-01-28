@@ -11,6 +11,13 @@ public class ResultScript : MonoBehaviour
     private float[] time = new float[2];
     private float[] downTime = new float[2];
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip Move_SE;
+    [SerializeField] private AudioClip Landing_SE;
+    [SerializeField] private AudioClip Clear_SE;
+    private bool isLanding;
+    private bool isClear;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +26,17 @@ public class ResultScript : MonoBehaviour
         downTime[0] = 0.01f;
         downTime[1] = 0.005f;
         damage = 0;
+        isLanding = false;
+        isClear = false;
 
         ClearText.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
         for (int i = 0; i < 3; i++)
         {
-            Player[i].transform.position = new Vector3(0, 8.0f, 0);
+            Player[i].transform.position = new Vector3(0, 10.0f, 0);
         }
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(Move_SE);
     }
 
     // Update is called once per frame
@@ -85,6 +97,24 @@ public class ResultScript : MonoBehaviour
         else
         {
             Player[damage].transform.position = new Vector3(0, -0.75f, 0);
+
+            if(!isLanding)
+            {
+                audioSource.PlayOneShot(Landing_SE);
+                isLanding = true;
+            }
+
+            Invoke("Clear", 1.0f);
+        }
+    }
+
+    //ÉNÉäÉAèàóù
+    private void Clear()
+    {
+        if(!isClear)
+        {
+            audioSource.PlayOneShot(Clear_SE);
+            isClear = true;
         }
     }
 }
