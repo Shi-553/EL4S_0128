@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     int missileCountMax = 3;
-    float missileCount = 3;
+    int missileCount = 3;
     [SerializeField]
     float missileReloadTime = 3;
 
@@ -14,13 +15,17 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     int lifeMax = 3;
-    int life = 3;
+
+    [SerializeField]
+    SpriteRenderer[] missiles;
+
+    public int Life { get; private set; }
 
     Camera mainCamera;
     void Start()
     {
         ResultScript.damage = 0;
-        life = lifeMax;
+        Life = lifeMax;
         missileCount = missileCountMax;
         mainCamera = Camera.main;
         StartCoroutine(UpdateLoop());
@@ -28,12 +33,13 @@ public class Player : MonoBehaviour
 
     public void Damaged()
     {
-        if (life <= 0)
+        if (Life <= 0)
             return;
-        life--;
+        Life--;
         ResultScript.damage++;
-        if (life <= 0)
+        if (Life <= 0)
         {
+            SceneManager.LoadScene("ResultScene");
             Debug.Log("Ž€‚ñ‚¾");
         }
     }
@@ -42,6 +48,10 @@ public class Player : MonoBehaviour
         while (true)
         {
             missileCount = missileCountMax;
+            foreach (var m in missiles)
+            {
+                m.color = Color.white;
+            }
             while (missileCount > 0)
             {
                 yield return WaitMouseButtonLoop();
@@ -58,6 +68,7 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 missileCount--;
+                missiles[missileCount].color = Color.gray;
 
                 Vector3 screenMousePos = Input.mousePosition;
                 screenMousePos.z = 10;
@@ -74,6 +85,11 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 missileCount = 0;
+
+                foreach (var m in missiles)
+                {
+                    m.color = Color.gray;
+                }
                 yield break;
             }
         }
