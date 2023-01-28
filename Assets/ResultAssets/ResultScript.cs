@@ -4,7 +4,7 @@ using UnityEngine.VFX;
 
 public class ResultScript : MonoBehaviour
 {
-    [SerializeField] private Text ClearText;
+    [SerializeField] private Image ClearImage;
     [SerializeField] private GameObject[] Player = new GameObject[3];
 
     public static int damage;  //コクーンタワーの状況 (0:ノーダメージ / 1:小破 / 2:中破)
@@ -32,7 +32,7 @@ public class ResultScript : MonoBehaviour
         isLanding = false;
         isClear = false;
 
-        ClearText.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
+        ClearImage.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
         for (int i = 0; i < 3; i++)
         {
             Player[i].transform.position = new Vector3(0, 10.0f, 0);
@@ -55,18 +55,18 @@ public class ResultScript : MonoBehaviour
     //テキスト移動処理
     private void TextDown()
     {
-        if (ClearText.rectTransform.localPosition.y > 250.0f)
+        if (ClearImage.rectTransform.localPosition.y > 250.0f)
         {
             time[0] += Time.deltaTime;
             if (downTime[0] < time[0])
             {
-                ClearText.rectTransform.localPosition += new Vector3(0, -1.0f, 0);
+                ClearImage.rectTransform.localPosition += new Vector3(0, -1.0f, 0);
                 time[0] = 0;
             }
         }
         else
         {
-            ClearText.rectTransform.localPosition = new Vector3(0, 250.0f, 0);
+            ClearImage.rectTransform.localPosition = new Vector3(0, 250.0f, 0);
         }
     }
 
