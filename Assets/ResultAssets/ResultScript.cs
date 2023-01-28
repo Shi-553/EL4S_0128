@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class ResultScript : MonoBehaviour
 {
-    [SerializeField] private Text ClearText;
+    [SerializeField] private Image ClearImage;
     [SerializeField] private GameObject[] Player = new GameObject[3];
 
     public static int damage;  //コクーンタワーの状況 (0:ノーダメージ / 1:小破 / 2:中破)
@@ -15,6 +16,7 @@ public class ResultScript : MonoBehaviour
     [SerializeField] private AudioClip Move_SE;
     [SerializeField] private AudioClip Landing_SE;
     [SerializeField] private AudioClip Clear_SE;
+    private bool isStart;
     private bool isLanding;
     private bool isClear;
 
@@ -26,17 +28,21 @@ public class ResultScript : MonoBehaviour
         downTime[0] = 0.01f;
         downTime[1] = 0.005f;
         damage = 0;
+        isStart = false;
         isLanding = false;
         isClear = false;
 
-        ClearText.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
+        ClearImage.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
         for (int i = 0; i < 3; i++)
         {
             Player[i].transform.position = new Vector3(0, 10.0f, 0);
+            Player[i].transform.Find("FrameParticle").GetComponent<VisualEffect>().Stop();  //炎アニメーションを止める
+            Player[i].transform.Find("SmokeBaseParticle").GetComponent<VisualEffect>().Stop();  //煙アニメーションを止める
         }
 
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(Move_SE);
+
     }
 
     // Update is called once per frame
@@ -49,24 +55,30 @@ public class ResultScript : MonoBehaviour
     //テキスト移動処理
     private void TextDown()
     {
-        if (ClearText.rectTransform.localPosition.y > 250.0f)
+        if (ClearImage.rectTransform.localPosition.y > 250.0f)
         {
             time[0] += Time.deltaTime;
             if (downTime[0] < time[0])
             {
-                ClearText.rectTransform.localPosition += new Vector3(0, -1.0f, 0);
+                ClearImage.rectTransform.localPosition += new Vector3(0, -1.0f, 0);
                 time[0] = 0;
             }
         }
         else
         {
-            ClearText.rectTransform.localPosition = new Vector3(0, 250.0f, 0);
+            ClearImage.rectTransform.localPosition = new Vector3(0, 250.0f, 0);
         }
     }
 
     //コクーンタワー着陸処理
     private void PlayerDown()
     {
+        if(!isStart)
+        {
+            Player[damage].transform.Find("FrameParticle").GetComponent<VisualEffect>().Play();  //炎アニメーションを始める
+            isStart = true;
+        }
+
         if (Player[damage].transform.position.y > 1.0f)
         {
             time[1] += Time.deltaTime;
@@ -100,6 +112,8 @@ public class ResultScript : MonoBehaviour
 
             if(!isLanding)
             {
+                Player[damage].transform.Find("FrameParticle").GetComponent<VisualEffect>().Stop();  //炎アニメーションを止める
+                Player[damage].transform.Find("SmokeBaseParticle").GetComponent<VisualEffect>().Play();  //煙アニメーションを始める
                 audioSource.PlayOneShot(Landing_SE);
                 isLanding = true;
             }
@@ -113,6 +127,7 @@ public class ResultScript : MonoBehaviour
     {
         if(!isClear)
         {
+            Player[damage].transform.Find("SmokeBaseParticle").GetComponent<VisualEffect>().Stop();  //煙アニメーションを止める
             audioSource.PlayOneShot(Clear_SE);
             isClear = true;
         }
