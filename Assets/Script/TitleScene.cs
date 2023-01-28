@@ -48,12 +48,14 @@ public class TitleScene : MonoBehaviour
                 frameParticle.Stop();
                 smokeParticle.Stop();
                 smokeBottomParticle.Stop();
+                Fade.Instance.ChangeScene("TempGame", 1.0f, 0.0f, 1.0f, 0.0f);
             }
 
         }
     }
 
     public void GameStart(){
+        filingAnimation.SetBool("IsStart", true);
         startButton.gameObject.SetActive(false);
         effectButton.gameObject.SetActive(true);
     }
