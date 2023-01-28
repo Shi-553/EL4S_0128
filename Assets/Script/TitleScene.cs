@@ -15,6 +15,8 @@ public class TitleScene : MonoBehaviour
     [SerializeField] Button firingButton;
     [SerializeField] Button effectButton;
     [SerializeField] Animator filingAnimation;
+    [SerializeField] Sprite buttonDown;
+    [SerializeField] Sprite buttonUp;
 
     [SerializeField] float TimeMax = 0.0f;
     float time = 0.0f;
@@ -48,7 +50,7 @@ public class TitleScene : MonoBehaviour
                 frameParticle.Stop();
                 smokeParticle.Stop();
                 smokeBottomParticle.Stop();
-                Fade.Instance.ChangeScene("TempGame", 1.0f, 0.0f, 1.0f, 0.0f);
+                Fade.Instance.ChangeScene("GameUI", 1.0f, 0.0f, 1.0f, 0.0f);
             }
 
         }
@@ -75,5 +77,19 @@ public class TitleScene : MonoBehaviour
         smokeBottomParticle.Play();
         effectButton.gameObject.SetActive(false);
         firingButton.gameObject.SetActive(true);
+    }
+
+    public void ButtonDown()
+    {
+        startButton.image.sprite = buttonDown;
+        effectButton.image.sprite = buttonDown;
+        firingButton.image.sprite = buttonDown;
+    }
+
+    public void ButtonUp()
+    {
+        startButton.image.sprite = buttonUp;
+        effectButton.image.sprite = buttonUp;
+        firingButton.image.sprite = buttonUp;
     }
 }
