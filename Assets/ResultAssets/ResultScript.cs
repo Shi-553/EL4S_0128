@@ -20,7 +20,7 @@ public class ResultScript : MonoBehaviour
         time[0] = time[1] = 0;
         downTime[0] = 0.01f;
         downTime[1] = 0.005f;
-        damage = 2;
+        damage = 0;
 
         ClearText.rectTransform.localPosition = new Vector3(0, 400.0f, 0);
         for (int i = 0; i < 3; i++)
