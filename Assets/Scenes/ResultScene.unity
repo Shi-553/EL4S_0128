@@ -15321,7 +15321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 550286472}
+  - {fileID: 1697244133}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15370,7 +15370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15899333173bcfe4cbb849c2ccf6c19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGM: {fileID: 550286470}
+  BGM: {fileID: 1697244132}
 --- !u!1 &1021091266
 GameObject:
   m_ObjectHideFlags: 0
@@ -15950,6 +15950,16 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!1 &1697244132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5019404077916876217, guid: 8e71938f1cd1bcf45a37f45a43672237, type: 3}
+  m_PrefabInstance: {fileID: 616322856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1697244133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2423156020194133454, guid: 8e71938f1cd1bcf45a37f45a43672237, type: 3}
+  m_PrefabInstance: {fileID: 616322856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1841967232
 GameObject:
   m_ObjectHideFlags: 0
