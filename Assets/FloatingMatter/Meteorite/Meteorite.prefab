@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6685338186834777757}
   - component: {fileID: 6601979820562829229}
   - component: {fileID: 6567681926631857915}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Meteorite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,8 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdec4b7a482f374eadafeba5826f045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToExplotion: 0.1
-  range: 1
+  timeToExplotion: 0.5
+  range: 1.5
+  explosionPower: 0.5
 --- !u!58 &6567681926631857915
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5579989657035655843}
   - component: {fileID: 7214978737612785299}
   - component: {fileID: 8653290732083016285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UFO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cb72967a3b54f4081d5476e2a08b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToExplotion: 0.1
+  timeToExplotion: 0.5
 --- !u!61 &8653290732083016285
 BoxCollider2D:
   m_ObjectHideFlags: 0

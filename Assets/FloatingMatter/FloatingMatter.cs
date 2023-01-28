@@ -49,12 +49,16 @@ public abstract class FloatingMatter : MonoBehaviour
             return;
         isBreaked = true;
 
+
+        GetComponent<SpriteRenderer>().color = Color.red;
+
+        AddForceAtPosition(info.direction * info.power, info.hitPos);
+        gameObject.layer = LayerMask.NameToLayer("FloatingMatterBlock");
         StartCoroutine(WaitExplosion(info));
 
     }
     IEnumerator WaitExplosion(BreakInfo info)
     {
-        AddForceAtPosition(info.direction * info.power, info.hitPos);
         yield return new WaitForSeconds(timeToExplotion);
         Explosion(info);
         Destroy(gameObject);
@@ -66,7 +70,12 @@ public abstract class FloatingMatter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            BreakImmediate();
+        }
+        if (collision.gameObject.TryGetComponent<FloatingMatter>(out var floatingMatter))
+        {
+            var contact = collision.contacts[0];
+            floatingMatter.Break(new(contact.normal, contact.point, 0));
         }
     }
 
