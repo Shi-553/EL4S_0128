@@ -29,6 +29,19 @@ public class Meteorite : FloatingMatter
         }
     }
 
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Player>(out var player))
+        {
+            player.Damaged();
+            BreakImmediate();
+        }
+        if (collision.gameObject.TryGetComponent<FloatingMatter>(out var floatingMatter))
+        {
+            var contact = collision.contacts[0];
+            floatingMatter.Break(new(-contact.normal, contact.point, contact.normalImpulse));
+        }
+    }
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {

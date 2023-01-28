@@ -75,17 +75,5 @@ public abstract class FloatingMatter : MonoBehaviour
     protected abstract void Explosion(BreakInfo info);
 
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            BreakImmediate();
-        }
-        if (collision.gameObject.TryGetComponent<FloatingMatter>(out var floatingMatter))
-        {
-            var contact = collision.contacts[0];
-            floatingMatter.Break(new(-contact.normal, contact.point, contact.normalImpulse));
-        }
-    }
 
 }

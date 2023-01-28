@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,7 @@ public class ResultScript : MonoBehaviour
     [SerializeField] private Text ClearText;
     [SerializeField] private GameObject[] Player = new GameObject[3];
 
-    private static int damage;  //コクーンタワーの状況 (0:ノーダメージ / 1:小破 / 2:中破)
+    public static int damage;  //コクーンタワーの状況 (0:ノーダメージ / 1:小破 / 2:中破)
 
     private float[] time = new float[2];
     private float[] downTime = new float[2];

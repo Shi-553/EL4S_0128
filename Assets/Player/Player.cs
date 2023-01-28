@@ -12,14 +12,31 @@ public class Player : MonoBehaviour
     [SerializeField]
     Missile missilePrefab;
 
+    [SerializeField]
+    int lifeMax = 3;
+    int life = 3;
+
     Camera mainCamera;
     void Start()
     {
+        ResultScript.damage = 0;
+        life = lifeMax;
         missileCount = missileCountMax;
         mainCamera = Camera.main;
         StartCoroutine(UpdateLoop());
     }
 
+    public void Damaged()
+    {
+        if (life <= 0)
+            return;
+        life--;
+        ResultScript.damage++;
+        if (life <= 0)
+        {
+            Debug.Log("Ž€‚ñ‚¾");
+        }
+    }
     IEnumerator UpdateLoop()
     {
         while (true)
