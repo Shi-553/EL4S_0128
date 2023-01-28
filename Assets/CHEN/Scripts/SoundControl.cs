@@ -26,7 +26,7 @@ public class SoundControl : MonoBehaviour
     {
         if(is_BG)
         {
-            if (VOL_BG < Max_Vol) VOL_BG += Time.deltaTime * VOL_ChangeSpeed;
+            if (VOL_BG < Max_Vol) VOL_BG += Time.deltaTime * VOL_ChangeSpeed * Max_Vol;
         }
         if(!is_BG)
         {

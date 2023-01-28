@@ -141,4 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04eeb20918371b248b9ddf82d5859f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Vol: 0.5
+  Max_Vol: 0.7
