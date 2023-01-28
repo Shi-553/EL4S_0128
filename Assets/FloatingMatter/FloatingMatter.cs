@@ -84,7 +84,7 @@ public abstract class FloatingMatter : MonoBehaviour
         if (collision.gameObject.TryGetComponent<FloatingMatter>(out var floatingMatter))
         {
             var contact = collision.contacts[0];
-            floatingMatter.Break(new(contact.normal, contact.point, 0));
+            floatingMatter.Break(new(-contact.normal, contact.point, contact.normalImpulse));
         }
     }
 

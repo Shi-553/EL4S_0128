@@ -7,7 +7,7 @@ public class BreakTest : MonoBehaviour
         if (other.gameObject.TryGetComponent<FloatingMatter>(out var floatingMatter))
         {
             var contact = other.contacts[0];
-            floatingMatter.Break(new(contact.normal, contact.point, contact.normalImpulse));
+            floatingMatter.Break(new(-contact.normal, contact.point, contact.normalImpulse));
         }
     }
 }
