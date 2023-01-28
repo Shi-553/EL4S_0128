@@ -1956,6 +1956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_BG_MainControl
       objectReference: {fileID: 0}
+    - target: {fileID: 6745850060851219204, guid: 8e71938f1cd1bcf45a37f45a43672237, type: 3}
+      propertyPath: Max_Vol
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e71938f1cd1bcf45a37f45a43672237, type: 3}
 --- !u!1 &1815247219
