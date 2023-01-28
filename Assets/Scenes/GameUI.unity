@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missileCountMax: 3
-  missileReloadTime: 3
+  missileReloadTime: 2
   missilePrefab: {fileID: 4517657770468658977, guid: f964a514e49b5b84cb7dbb6e000f290d, type: 3}
   lifeMax: 3
   missiles:
@@ -557,9 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b439068d3c89b7645bfd91729fb03837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generateInterval: 8
+  generateInterval: 15
   ufoPrefab: {fileID: 7214978737612785299, guid: b628dda4a17e0614abaf9abe4ef8faa5, type: 3}
-  spawnPos: {x: -3.48, y: 4}
+  spawnPos: {x: -3.5, y: 4}
 --- !u!1 &912420208
 GameObject:
   m_ObjectHideFlags: 0
