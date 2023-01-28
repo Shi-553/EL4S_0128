@@ -17,8 +17,6 @@ public class FloatingMatterGenerator : MonoBehaviour
     float spawnInterval = 0.1f;
     float time = 0;
 
-    [SerializeField]
-    float speed = 10;
 
     [SerializeField]
     Transform target;
@@ -47,16 +45,13 @@ public class FloatingMatterGenerator : MonoBehaviour
         {
             time = 0;
 
-            var floatimgMatter = SpawnFloatingMatter();
+            var floatimgMatter = SpawnFloatingMatter(GetRandomPos());
 
-            floatimgMatter.transform.position = GetRandomPos();
-
-            var fouce = (target.position - floatimgMatter.transform.position).normalized;
-            floatimgMatter.AddForce(fouce * speed);
+            floatimgMatter.Init(target);
         }
     }
 
-    FloatingMatter SpawnFloatingMatter()
+    FloatingMatter SpawnFloatingMatter(Vector2 pos)
     {
         float val = Random.Range(0, probabilityMax);
 
@@ -65,7 +60,7 @@ public class FloatingMatterGenerator : MonoBehaviour
             val -= info.probability;
             if (val <= 0)
             {
-                return Instantiate(info.floatingMatterPrefab, transform);
+                return Instantiate(info.floatingMatterPrefab, pos, Quaternion.identity, transform);
             }
         }
         throw new System.Exception("‚ ‚è‚¦‚È‚¢");
@@ -73,7 +68,6 @@ public class FloatingMatterGenerator : MonoBehaviour
 
     Vector2 GetRandomPos()
     {
-
         var val = Random.Range(0.0f, positions.Length - 1 - 0.001f);
 
         var floorIndex = Mathf.FloorToInt(val);

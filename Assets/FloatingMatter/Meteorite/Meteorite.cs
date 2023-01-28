@@ -3,9 +3,17 @@ using UnityEngine;
 public class Meteorite : FloatingMatter
 {
     [SerializeField]
+    float speed = 1;
+    [SerializeField]
     float range = 1;
     [SerializeField]
     float explosionPower = 1;
+
+    protected override void InitImpl()
+    {
+        var fouce = (target.position - transform.position).normalized;
+        AddForce(fouce * speed);
+    }
     protected override void Explosion(BreakInfo info)
     {
         var overlaps = Physics2D.OverlapCircleAll(transform.position, range);

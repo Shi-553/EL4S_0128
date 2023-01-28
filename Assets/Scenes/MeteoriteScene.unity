@@ -328,6 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 778722004}
   - component: {fileID: 778722003}
+  - component: {fileID: 778722005}
   m_Layer: 0
   m_Name: FloatingMatterGenerator
   m_TagString: Untagged
@@ -350,10 +351,7 @@ MonoBehaviour:
   floatingMatterSpawnInfos:
   - floatingMatterPrefab: {fileID: 6601979820562829229, guid: d647e241695e3814db0344b2838f6b60, type: 3}
     probability: 10
-  - floatingMatterPrefab: {fileID: 7214978737612785299, guid: b628dda4a17e0614abaf9abe4ef8faa5, type: 3}
-    probability: 1
   spawnInterval: 0.5
-  speed: 0.2
   target: {fileID: 679756449}
 --- !u!4 &778722004
 Transform:
@@ -370,6 +368,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &778722005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778722002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b439068d3c89b7645bfd91729fb03837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateInterval: 8
+  ufoPrefab: {fileID: 7214978737612785299, guid: b628dda4a17e0614abaf9abe4ef8faa5, type: 3}
+  spawnPos: {x: -3.48, y: 4.37}
 --- !u!1 &1512116253
 GameObject:
   m_ObjectHideFlags: 0

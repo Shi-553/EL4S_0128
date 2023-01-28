@@ -20,7 +20,7 @@ public abstract class FloatingMatter : MonoBehaviour
     [SerializeField]
     float timeToExplotion = 0.1f;
 
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
     protected virtual void Awake()
     {
         TryGetComponent(out rigid);
@@ -33,6 +33,15 @@ public abstract class FloatingMatter : MonoBehaviour
     {
         rigid.AddForce(fouce, ForceMode2D.Impulse);
     }
+
+    protected Transform target;
+    public void Init(Transform target)
+    {
+        this.target = target;
+        InitImpl();
+    }
+
+    protected abstract void InitImpl();
 
     bool isBreaked = false;
     public void BreakImmediate()
