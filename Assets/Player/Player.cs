@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +17,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer[] missiles;
+
+    [SerializeField]
+    GameObject gameoverObj;
 
     public int Life { get; private set; }
 
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
         ResultScript.damage++;
         if (Life <= 0)
         {
-            SceneManager.LoadScene("ResultScene");
+            gameoverObj.SetActive(true);
             Debug.Log("Ž€‚ñ‚¾");
         }
     }
